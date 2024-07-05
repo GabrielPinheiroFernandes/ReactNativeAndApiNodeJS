@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+//ListUser
 export const Container = styled.SafeAreaView`
     flex: 1;
     flex-direction: column;
@@ -11,9 +11,37 @@ export const Container = styled.SafeAreaView`
 
 export const TitleList = styled.Text`
     color: #f5f5f5;
-    font-size: 22px;
+    width:150px;
+    font-size: 30px;
     text-align: center;
-    padding: 25px 15px 5px 15px;
+    padding: 25px 15px 10px 15px;
+`;
+export const BtnAddAction = styled.TouchableOpacity`
+  background-color: #f57c00;  /* Cor de fundo diferente */
+  width: 150px;
+  height: 50px;  /* Altura ligeiramente maior */
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;  /* Borda ligeiramente mais arredondada */
+  margin-top: 10px;  /* Margem superior para espaçamento */
+  shadow-color: #000;  /* Sombra para um efeito de elevação */
+  shadow-offset: 0px 2px;  /* Correção aqui */
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  elevation: 5;  /* Elevação para Android */
+`;
+
+export const BtnAddText = styled.Text`
+  color: #ffffff;  /* Texto em branco */
+  font-size: 18px;  /* Tamanho da fonte */
+  font-weight: bold;  /* Negrito */
+`;
+
+export const HeadersCadUsu = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 `;
 
 export const List = styled.View`
@@ -43,7 +71,7 @@ export const ValueData = styled.Text`
 export const BtnView = styled.Text`
     justify-content: flex-end;
 `;
-
+//Pagination
 export const Pagination = styled.View`
     padding: 10px;
     flex-direction: row;
@@ -66,7 +94,7 @@ export const PaginationTextActive = styled.Text`
     margin: 3px;
     border-radius: 6px;
 `;
-
+//View User
 export const Content = styled.View`
     flex-direction: row;
     align-items: center;
@@ -84,5 +112,68 @@ export const TitleViewContent = styled.Text`
 export const ViewContent = styled.Text`
     color: #f5f5f5;
     font-size: 15px;
+`;
+
+export const BtnActionEdit = styled.TouchableOpacity`
+    margin-top: 15px;
+    background-color: #5004a7;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #f5f5f5; /* Adicionei a propriedade 'border' corretamente */
+`;
+export const BtnActionDel = styled.TouchableOpacity`
+    margin-top: 15px;
+    background-color: #f00;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #f5f5f5; /* Adicionei a propriedade 'border' corretamente */
+`;
+
+export const TxtBtnAction = styled.Text`
+    color: #fff;
+    font-size: 19px;
+`;
+
+//Formulario
+
+export const LabelFormDash = styled.Text`
+  color: #111;
+  font-size: 18px;
+`;
+
+export const InputFormDash = styled.TextInput`
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  color: #222;
+  font-size: 18px;
+  border-radius: 6px;
+  border-color: #1f51fe;
+  border-width: 1px;
+`;
+
+export const TxtRequiredFormDash = styled.Text`
+  padding-bottom: 5px;
+  color: #111;
+  font-size: 12px;
+`;
+export const BtnSubmitFormDash = styled.TouchableOpacity`
+  background-color: #1f51fe;
+  width: 100%;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+`;
+export const TxtSubmitFormDash = styled.Text`
+  color: #fff;
+  font-size: 19px;
 `;
 

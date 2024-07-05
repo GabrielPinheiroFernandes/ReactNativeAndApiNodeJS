@@ -35,7 +35,7 @@ router.get('/users', async (req, res) => {
         // Indicar quais colunas recuperar
         attributes: ['id', 'name', 'email'],
 
-        order: [['id', 'ASC']],
+        order: [['id', 'DESC']],
 
         // Calcular a partir de qual registro deve retornar e o limite de registros
         offset: Number((page * limit) - limit),

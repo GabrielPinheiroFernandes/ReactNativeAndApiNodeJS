@@ -2,15 +2,15 @@
 import { Alert, ScrollView } from "react-native";
 
 // Importar o arquivo com os componentes CSS
-import { Container, Content, TitleList, TitleViewContent, ViewContent } from './../../styles/custom_adm';
+import { BtnActionDel, BtnActionEdit, Container, Content, TitleViewContent, TxtBtnAction, ViewContent } from './../../styles/custom_adm';
 
 //importar navegação entre telas
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 // importar a api 
 import api from '../../config/api';
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // Criar e exportar a função com a tela inicial 
 export default function ViewUser({ route }) {
@@ -23,11 +23,7 @@ export default function ViewUser({ route }) {
  
   const userId  = route.params.userId;
 
-  const getUser = async() =>{
-
-  
-
-    
+  const getUser = async() =>{ 
     await api.get(`/users/${userId}`)
     .then((response)=>{
         //console.log(response.data.user);
@@ -39,20 +35,38 @@ export default function ViewUser({ route }) {
         } else {
           Alert.alert("Ops","Erro: Tente Novamente Mais Tarde!");
           navigation.navigate('ListUsers');
+        }     
+    })
+  }
+
+  // useEffect(()=>{
+  //   getUser();
+  // },[])
+
+  useFocusEffect(
+    useCallback(()=>{
+      getUser();
+    },[])
+  );
+
+  const DelUsuario = async() =>{ 
+    await api.delete(`/users/${userId}`)
+    .then((response)=>{
+        Alert.alert('Usuario Deletado com sucesso');
+        navigation.navigate('ListUser');
+
+    }).catch((err)=>{
+        if(err.response) {
+          Alert.alert("Ops",err.response.data.mensagem);
+        } else {
+          Alert.alert("Ops","Erro: Tente Novamente Mais Tarde!");
         }
     })
   }
 
-  useEffect(()=>{
-
-    getUser();
-
-  },[])
-
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Container>
-          <TitleList>Visualizar Usuário</TitleList>
           <Content>
             <TitleViewContent>ID:</TitleViewContent>  
             <ViewContent>{user.id}</ViewContent>
@@ -66,7 +80,16 @@ export default function ViewUser({ route }) {
           <Content>
             <TitleViewContent>Email:</TitleViewContent>  
             <ViewContent>{user.email}</ViewContent>
-          </Content>  
+          </Content> 
+          
+          <BtnActionEdit onPress={() => navigation.navigate('EditUser', { UserID: user.id })}>
+            <TxtBtnAction>Editar</TxtBtnAction>
+          </BtnActionEdit>
+          
+          <BtnActionDel onPress={DelUsuario}>
+            <TxtBtnAction>Deletar Usuario</TxtBtnAction>
+          </BtnActionDel>
+
           
             
         </Container>

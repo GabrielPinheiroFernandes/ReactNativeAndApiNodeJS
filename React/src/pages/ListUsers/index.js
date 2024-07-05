@@ -1,17 +1,17 @@
 // useEffect - Criar efeitos colaterais em componentes funcionais
 // useState - Adicionar estado ao componente
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // Incluir os componentes utilizado para estruturar o conteúdo
-import { Alert, ScrollView, TouchableOpacity } from "react-native";
+import { Alert, ScrollView, TouchableOpacity, View } from "react-native";
 
 // Importar o arquivo com os componentes CSS
-import { Container, TitleList, List, RowData, InfoData, ValueData, BtnView, Pagination, PaginationText, PaginationTextActive } from '../../styles/custom_adm';
+import { Container, TitleList, List, RowData, InfoData, ValueData, BtnView, Pagination, PaginationText, PaginationTextActive, BtnAddAction, BtnAddText, HeadersCadUsu } from '../../styles/custom_adm';
 
 // Importar os ícones
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 // Arquivo com as configurações da API
 import api from "../../config/api";
@@ -47,14 +47,26 @@ export default function ListUsers() {
   }
 
   // Executar quando o usuário carregar a tela e chamar a função getUsers
-  useEffect(() => {
-    getUsers(1);
-  }, []);
+  // useEffect(() => {
+  //   getUsers(1);
+  // }, []);
 
+  useFocusEffect(
+    useCallback(() => {
+      getUsers(1);
+    }, [])
+  );
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
-        <TitleList>Usuários</TitleList>
+        <HeadersCadUsu>
+          <TitleList>Usuários</TitleList>
+          <BtnAddAction onPress={()=>{
+            Navigation.navigate("AddUser")
+          }}>
+            <BtnAddText>Cadastre-se</BtnAddText>
+          </BtnAddAction>
+        </HeadersCadUsu>
 
         <List>
           {users.map((user) => {
